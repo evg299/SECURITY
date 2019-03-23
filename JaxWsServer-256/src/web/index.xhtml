@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Адаптер сервисов для спецификации 2.5.6</title>
+</h:head>
+<h:body>
+	<div style="width: 499px; margin: 0 auto;">
+		<div align="center">
+			<H2>Вход в управление свойствами проекта</H2>
+		</div>
+
+		<p:panel>
+			<h:form id="form">
+				<h:panelGrid columns="2" style="margin-bottom:10px">
+					<h:outputLabel for="dpass" value="Пароль для управления:" />
+					<h:inputSecret id="dpass" value="#{loginBean.password}" />
+				</h:panelGrid>
+				<div align="center">
+					<p:commandButton id="submitButton" value="Вход"
+						action="#{loginBean.loginAction}" ajax="false" />
+				</div>
+			</h:form>
+		</p:panel>
+	</div>
+</h:body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<f:metadata>
+	<f:event listener="#{loginBean.isLogined}" type="preRenderView" />
+</f:metadata>
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Адаптер сервисов для спецификации 2.5.6</title>
+</h:head>
+<h:body>
+	<div style="width: 999px; margin: 0 auto;">
+		<div align="center">
+			<H2>Управление свойствами проекта</H2>
+		</div>
+
+		<p:panel>
+			Чтобы удалить свойство, нужно очистить поле "Идентификатор свойства"
+		</p:panel>
+		<br />
+		<h:form id="form">
+			<p:dataTable id="propsTable" var="property"
+				value="#{configBean.appConfigContainer.properties}" editable="true">
+				<f:facet name="header">Свойства проекта</f:facet>
+
+				<p:ajax event="rowEdit" listener="#{configBean.onEdit}"
+					update="propsTable" />
+
+				<p:column headerText="Название свойства" style="width:32%">
+					<h:outputText value="#{property.caption}" title="#{property.name}" />
+				</p:column>
+
+				<p:column headerText="Идентификатор свойства" style="width:32%">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{property.name}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{property.name}" style="width:100%" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
+				<p:column headerText="Значение свойства" style="width:32%">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{property.value}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{property.value}" style="width:100%"
+								label="Year" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
+				<p:column headerText="Действия" style="width:4%">
+					<p:rowEditor />
+				</p:column>
+			</p:dataTable>
+
+			<br />
+
+			<div align="right">
+				<p:commandButton id="showDialogButton" type="button"
+					value="Добавить" onclick="dlg.show()" />
+			</div>
+
+			<p:dialog header="Новое свойство" widgetVar="dlg" resizable="false"
+				modal="true">
+				<h:panelGrid columns="2" style="margin-bottom:10px">
+					<h:outputLabel for="dcaption" value="Название свойства:" />
+					<p:inputText id="dcaption"
+						value="#{configBean.newProperty.caption}" />
+
+					<h:outputLabel for="dname" value="Идентификатор свойства*:" />
+					<p:inputText id="dname" value="#{configBean.newProperty.name}" />
+
+					<h:outputLabel for="dvalue" value="Значение свойства:" />
+					<p:inputText id="dvalue" value="#{configBean.newProperty.value}" />
+				</h:panelGrid>
+
+				<p:commandButton id="submitButton" value="Сохранить"
+					actionListener="#{configBean.add}"
+					update="propsTable, dcaption, dname, dvalue"
+					oncomplete="dlg.hide();" />
+			</p:dialog>
+		</h:form>
+	</div>
+</h:body>
+</html>

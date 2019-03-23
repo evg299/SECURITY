@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<app-config password="123123">
+	<properties>
+		<property name="conainer_name" caption="Имя контейнера" value="KomitetTOpoZAGS-CREDO-S" />
+		<property name="conainer_pin" caption="Пин-код контейнера" value="12345678" />
+		<property name="check_in_sig" caption="Проверять ли подпись входящих запросов" value="false" />
+		<property name="nvs_word" caption="Стоп-слово для неверной подписи" value="SFSFSFSFSFSFSFSFS" />
+	</properties>
+</app-config>
